@@ -1,0 +1,35 @@
+
+### Get all books
+GET http://localhost:5035/books
+
+### Get book by ID
+GET http://localhost:5035/books/1
+
+### Create a book
+POST http://localhost:5035/books
+Content-Type: application/json
+
+{
+    "id": 0,
+    "name": "The Art of Computer Programming",
+    "authorName": "Donald Knuth",
+    "price": 89.99,
+    "releaseDate": "1968-01-01",
+    "genre": "Computer Science"
+}
+
+### Update a book
+PUT http://localhost:5035/books/1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Clean Code - Updated",
+    "authorName": "Robert C. Martin",
+    "price": 49.99,
+    "releaseDate": "2008-08-01",
+    "genre": "Software Engineering"
+}
+
+### Delete a book
+DELETE http://localhost:5035/books/1
