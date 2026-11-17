@@ -10,38 +10,6 @@ GET http://localhost:5035/books
 ### Get book by ID
 GET http://localhost:5035/books/1
 
-### Create a book
-POST http://localhost:5035/books
-Authorization: Bearer {{adminToken}}
-Content-Type: application/json
-
-{
-    "name": "The Art of Computer Programming",
-    "authorName": "Donald Knuth",
-    "price": 89.99,
-    "releaseDate": "1968-01-01",
-    "genre": "Computer Science"
-}
-
-### Update a book
-PUT http://localhost:5035/books/1
-Content-Type: application/json
-
-{
-    "id": 1,
-    "name": "Clean Code - Updated",
-    "authorName": "Robert C. Martin",
-    "price": 49.99,
-    "releaseDate": "2008-08-01",
-    "genre": "Software Engineering"
-}
-
-### Delete a book
-DELETE http://localhost:5035/books/1
-
-
-
-
 ### Login as admin
 POST http://localhost:5035/login
 Content-Type: application/json
@@ -70,13 +38,16 @@ Content-Type: application/json
 }
 
 
-###
+### user info
 GET http://localhost:5035/me HTTP/1.1
-Authorization: Bearer your-token
+Authorization: Bearer {{userToken}}
 
 
+### admin info
+GET http://localhost:5035/me HTTP/1.1
+Authorization: Bearer {{adminToken}}
 
-### 3. Admin can add a book
+### Admin can add a book
 POST {{baseUrl}}/books
 Authorization: Bearer {{adminToken}}
 Content-Type: application/json
@@ -89,7 +60,7 @@ Content-Type: application/json
     "genre": "Software Engineering"
 }
 
-### 4. User cannot add a book
+### User cannot add a book
 POST {{baseUrl}}/books
 Authorization: Bearer {{userToken}}
 Content-Type: application/json
@@ -102,7 +73,7 @@ Content-Type: application/json
     "genre": "Testing"
 }
 
-### 5. Admin can update a book
+### Admin can update a book
 PUT {{baseUrl}}/books/1
 Authorization: Bearer {{adminToken}}
 Content-Type: application/json
@@ -116,10 +87,10 @@ Content-Type: application/json
     "genre": "Software Engineering"
 }
 
-### 6. User cannot delete a book
+### User cannot delete a book
 DELETE {{baseUrl}}/books/1
 Authorization: Bearer {{userToken}}
 
-### 7. Admin can delete a book
+### Admin can delete a book
 DELETE {{baseUrl}}/books/1
 Authorization: Bearer {{adminToken}}

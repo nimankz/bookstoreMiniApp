@@ -42,8 +42,20 @@ builder.Services
 builder.Services.AddAuthorization();
 
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ReactApp", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
+app.UseCors("ReactApp");
 
 app.UseAuthentication();
 app.UseAuthorization();
