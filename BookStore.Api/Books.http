@@ -32,3 +32,38 @@ Content-Type: application/json
 
 ### Delete a book
 DELETE http://localhost:5035/books/1
+
+
+
+
+### Login as admin
+POST http://localhost:5035/login
+Content-Type: application/json
+
+{
+    "userName": "admin",
+    "password": "1234"
+}
+
+### Login as regular user
+POST http://localhost:5035/login
+Content-Type: application/json
+
+{
+    "userName": "user",
+    "password": "1234"
+}
+
+### Login with incorrect credentials
+POST http://localhost:5035/login
+Content-Type: application/json
+
+{
+    "userName": "admin",
+    "password": "wrong"
+}
+
+
+###
+GET http://localhost:5035/me HTTP/1.1
+Authorization: Bearer your-token
