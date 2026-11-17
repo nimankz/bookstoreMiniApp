@@ -1,4 +1,9 @@
 
+@baseUrl = http://localhost:5035
+@adminToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImFkbWluIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6ImFkbWluIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiYWRtaW4iLCJleHAiOjE3OTQ5NDA3NzQsImlzcyI6IkJvb2tTdG9yZS5BcGkiLCJhdWQiOiJCb29rU3RvcmUuQ2xpZW50In0.WDTG__DrSt8qcii9JML4qySf9ZUqDveoBgd_jwJURTg
+@userToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6InVzZXIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidXNlciIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6InVzZXIiLCJleHAiOjE3OTQ5NDA3NDEsImlzcyI6IkJvb2tTdG9yZS5BcGkiLCJhdWQiOiJCb29rU3RvcmUuQ2xpZW50In0.Welro2GmIidSEDxJJhk3cZP8pI-nZP84tCyYwWLxH50
+
+
 ### Get all books
 GET http://localhost:5035/books
 
@@ -7,6 +12,7 @@ GET http://localhost:5035/books/1
 
 ### Create a book
 POST http://localhost:5035/books
+Authorization: Bearer {{adminToken}}
 Content-Type: application/json
 
 {
@@ -67,3 +73,53 @@ Content-Type: application/json
 ###
 GET http://localhost:5035/me HTTP/1.1
 Authorization: Bearer your-token
+
+
+
+### 3. Admin can add a book
+POST {{baseUrl}}/books
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+    "name": "The Clean Coder",
+    "authorName": "Robert C. Martin",
+    "price": 35.99,
+    "releaseDate": "2011-05-23",
+    "genre": "Software Engineering"
+}
+
+### 4. User cannot add a book
+POST {{baseUrl}}/books
+Authorization: Bearer {{userToken}}
+Content-Type: application/json
+
+{
+    "name": "Test Book",
+    "authorName": "Test Author",
+    "price": 20.00,
+    "releaseDate": "2020-01-01",
+    "genre": "Testing"
+}
+
+### 5. Admin can update a book
+PUT {{baseUrl}}/books/1
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+    "id": 1,
+    "name": "Clean Code Updated",
+    "authorName": "Robert C. Martin",
+    "price": 50.00,
+    "releaseDate": "2008-08-01",
+    "genre": "Software Engineering"
+}
+
+### 6. User cannot delete a book
+DELETE {{baseUrl}}/books/1
+Authorization: Bearer {{userToken}}
+
+### 7. Admin can delete a book
+DELETE {{baseUrl}}/books/1
+Authorization: Bearer {{adminToken}}

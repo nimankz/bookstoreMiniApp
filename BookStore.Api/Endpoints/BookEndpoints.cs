@@ -77,7 +77,7 @@ public static class BookEndpoints
             books.Add(bookToAdd);
 
             return Results.Created($"/books/{bookToAdd.Id}", bookToAdd);
-        });
+        }).RequireAuthorization(policy => policy.RequireRole("admin"));
 
         // PUT: /books/{id}
         app.MapPut("/books/{id}", (int id, BookDto updatedBook) =>
@@ -90,7 +90,8 @@ public static class BookEndpoints
             books[index] = updatedBook with { Id = id };
 
             return Results.Created($"/books/{updatedBook.Id}", updatedBook);
-        });
+        })
+        .RequireAuthorization(policy => policy.RequireRole("admin"));
 
         // DELETE: /books/{id}
         app.MapDelete("/books/{id}", (int id) =>
@@ -103,6 +104,7 @@ public static class BookEndpoints
             books.Remove(book);
 
             return Results.Ok(books);
-        });
+        })
+        .RequireAuthorization(policy => policy.RequireRole("admin"));
     }
 }
