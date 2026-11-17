@@ -59,13 +59,20 @@ public static class BookEndpoints
         }).WithName("getBookById");
 
         // POST: /books
-        app.MapPost("/books", (BookDto newBook) =>
+        app.MapPost("/books", (AddBookDto newBook) =>
         {
             var newId = books.Count == 0
                 ? 1
                 : books.Max(b => b.Id) + 1;
 
-            var bookToAdd = newBook with { Id = newId };
+            var bookToAdd = new BookDto(
+                newId,
+                newBook.Name,
+                newBook.AuthorName,
+                newBook.Price,
+                newBook.ReleaseDate,
+                newBook.Genre
+            );
 
             books.Add(bookToAdd);
 

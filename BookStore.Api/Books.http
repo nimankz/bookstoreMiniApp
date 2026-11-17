@@ -10,7 +10,6 @@ POST http://localhost:5035/books
 Content-Type: application/json
 
 {
-    "id": 0,
     "name": "The Art of Computer Programming",
     "authorName": "Donald Knuth",
     "price": 89.99,
