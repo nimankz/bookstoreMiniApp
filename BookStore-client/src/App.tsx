@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
-// import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/LoginPage";
 import BooksPage from "./pages/BooksPage";
 // import ProtectedRoute from "./components/protectedRoute";
 function App() {
@@ -8,8 +8,8 @@ function App() {
  
     <Routes>
       <Route path="/books" element={<BooksPage/>}/>
-      {/* <Route path="/login" element={<LoginPage />} />
-
+      <Route path="/login" element={<LoginPage />} />
+{/*
       <Route element={<ProtectedRoute />}>
         <Route path="/books" element={<BooksPage />} />
       </Route>
