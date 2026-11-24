@@ -1,10 +1,14 @@
 
 import { useState, type FormEvent } from "react";
 import Modal from "./modal";
+import { Book } from "lucide-react";
 
 export interface NewBook {
-  name: string;
-  price: number;
+    name: string,
+    authorName: string,
+    price: number,
+    releaseDate:string ,
+    genre: string
 }
 
 interface AddBookModalProps {
@@ -20,6 +24,9 @@ export default function AddBookModal({
 }: AddBookModalProps) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
+  const [authorName, setAuthorName] = useState("");
+  const [releaseDate, setReleaseDate] = useState("");
+  const [genre, setgenre] = useState("");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,6 +34,9 @@ export default function AddBookModal({
     onAdd({
       name,
       price: Number(price),
+      authorName,
+      genre,
+      releaseDate
     });
 
     setName("");
@@ -47,6 +57,33 @@ export default function AddBookModal({
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className="w-full rounded-lg border p-2"
+          />
+        </div>
+        <div>
+          <label>author Name</label>
+          <input
+            required
+            value={authorName}
+            onChange={(e) => setAuthorName(e.target.value)}
+            className="w-full rounded-lg border p-2"
+          />
+        </div>
+        <div>
+          <label>genre</label>
+          <input
+            required
+            value={genre}
+            onChange={(e) => setgenre(e.target.value)}
+            className="w-full rounded-lg border p-2"
+          />
+        </div>
+        <div>
+          <label>release date</label>
+          <input
+            required
+            value={releaseDate}
+            onChange={(e) => setReleaseDate(e.target.value)}
             className="w-full rounded-lg border p-2"
           />
         </div>
@@ -73,7 +110,7 @@ export default function AddBookModal({
             type="submit"
             className="rounded-lg bg-blue-600 px-4 py-2 text-white"
           >
-            Add Book
+            Save Changes
           </button>
         </div>
       </form>

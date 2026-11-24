@@ -184,16 +184,74 @@ export default function LoginPage(){
 
   };
   
-  return(
-    <>
-      <form onSubmit={myrequest}>
-        <label>user name</label>
-        <input type="text" onChange={(e) => updateUsername(e.target.value)} value={username}/>
-        <br></br>
-        <label>password</label>
-        <input type="password" onChange={(e) => updatePassword(e.target.value)} value={password}/>
-        <button type="submit">login</button>
+  // return(
+  //   <>
+  //     <form onSubmit={myrequest}>
+  //       <label>user name</label>
+  //       <input type="text" onChange={(e) => updateUsername(e.target.value)} value={username}/>
+  //       <br></br>
+  //       <label>password</label>
+  //       <input type="password" onChange={(e) => updatePassword(e.target.value)} value={password}/>
+  //       <button type="submit">login</button>
+  //     </form>
+  //   </>
+  // )
+
+  return (
+  <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+    <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg">
+
+      <div className="mb-8 text-center">
+        <h1 className="text-3xl font-bold text-gray-900">
+          BookStore
+        </h1>
+        <p className="mt-2 text-sm text-gray-500">
+          Sign in to manage your bookstore
+        </p>
+      </div>
+
+      <form onSubmit={myrequest} className="space-y-5">
+
+        <div>
+          <label className="mb-2 block text-sm font-medium text-gray-700">
+            Username
+          </label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => updateUsername(e.target.value)}
+            placeholder="Enter your username"
+            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+          />
+        </div>
+
+        <div>
+          <label className="mb-2 block text-sm font-medium text-gray-700">
+            Password
+          </label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => updatePassword(e.target.value)}
+            placeholder="Enter your password"
+            className="w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full rounded-lg bg-indigo-600 py-3 font-semibold text-white transition hover:bg-indigo-700 active:scale-[0.98]"
+        >
+          Sign in
+        </button>
+
       </form>
-    </>
-  )
+
+      <p className="mt-6 text-center text-xs text-gray-400">
+        BookStore Management System
+      </p>
+
+    </div>
+  </div>
+);
 }

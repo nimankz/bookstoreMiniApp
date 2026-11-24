@@ -3,9 +3,12 @@ import { useEffect, useState, type FormEvent } from "react";
 import Modal from "./modal";
 
 export interface Book {
-  id: number;
-  name: string;
-  price: number;
+    id: number,
+    name: string,
+    authorName: string,
+    price: number,
+    releaseDate:string ,
+    genre: string
 }
 
 interface EditBookModalProps {
@@ -23,11 +26,17 @@ export default function EditBookModal({
 }: EditBookModalProps) {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
+  const [authorName, setAuthorName] = useState("");
+  const [releaseDate, setReleaseDate] = useState("");
+  const [genre, setgenre] = useState("");
 
   useEffect(() => {
     if (book) {
       setName(book.name);
       setPrice(String(book.price));
+      setAuthorName(String(book.authorName));
+      setReleaseDate(String(book.releaseDate));
+      setgenre(String(book.genre));
     }
   }, [book]);
 
@@ -40,6 +49,9 @@ export default function EditBookModal({
       id: book.id,
       name,
       price: Number(price),
+      authorName,
+      genre,
+      releaseDate
     });
 
     updateModalState();
@@ -58,6 +70,33 @@ export default function EditBookModal({
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className="w-full rounded-lg border p-2"
+          />
+        </div>
+        <div>
+          <label>author Name</label>
+          <input
+            required
+            value={authorName}
+            onChange={(e) => setAuthorName(e.target.value)}
+            className="w-full rounded-lg border p-2"
+          />
+        </div>
+        <div>
+          <label>genre</label>
+          <input
+            required
+            value={genre}
+            onChange={(e) => setgenre(e.target.value)}
+            className="w-full rounded-lg border p-2"
+          />
+        </div>
+        <div>
+          <label>release date</label>
+          <input
+            required
+            value={releaseDate}
+            onChange={(e) => setReleaseDate(e.target.value)}
             className="w-full rounded-lg border p-2"
           />
         </div>
